@@ -64,9 +64,6 @@ if GetDepend(['RT_USING_WDT']):
 if GetDepend(['RT_USING_SDIO']):
     src += ['src/hc32_ll_sdioc.c']
 
-if GetDepend(['RT_USING_ON_CHIP_FLASH']):
-    src += ['src/hc32_ll_efm.c']
-
 if GetDepend(['RT_USING_HWTIMER']):
     src += ['src/hc32_ll_tmr2.c']
     src += ['src/hc32_ll_tmr4.c']
