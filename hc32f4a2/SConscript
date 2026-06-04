@@ -64,7 +64,7 @@ if GetDepend(['RT_USING_WDT']):
 if GetDepend(['RT_USING_SDIO']):
     src += ['src/hc32_ll_sdioc.c']
 
-if GetDepend(['RT_USING_HWTIMER']):
+if GetDepend(['BSP_USING_CLOCK_TIMER']):
     src += ['src/hc32_ll_tmr2.c']
     src += ['src/hc32_ll_tmr4.c']
     src += ['src/hc32_ll_tmr6.c']
