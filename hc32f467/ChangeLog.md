@@ -1,0 +1,283 @@
+# Update History
+------
+## V1.1.0  Nov 08, 2024
+#### Main Changes
+
+- Add ev_hc32f467_lqfp144 board
+
+#### documents
+
+#### drivers
+- ##### bsp/components
+  - **wm8988**
+    - Fixed MISRA-2012 warnings
+- ##### bsp/sk_hc32f467_lqfp100
+  - Modify XTAL/XTAL32 pins definition
+- ##### cmsis/Device
+  - Remove EVT_SRC_ETH_PPS_OUT_0/1
+  - Modify DCU/DMA/QSPI/I2C/I2S/MAU registers
+  - Add macros to separate qspi configuration for lqfp100 and lqfp144
+- ##### hc32_ll_driver
+  - **generic**
+    - Modify version as Rev1.1.0
+  - **clk**
+    - Delete group definition for CLK_FREQ
+  - **cmp**
+    - Refine relation of CMP out detect flag functions and Unified Register Bit Names
+  - **crc**
+    - Modify interface of AccumulateData and Calculate functions
+  - **dac**
+    - Add DAC data align configuration
+  - **dma**
+    - Add API DMA_MxChSWTrigger() and DMA_SWReconfig()
+    - Add API DMA_AHB_HProtBufCacheCmd()
+    - Add API DMA_MxChSWTrigger() & DMA_SWReconfig()
+  - **efm**
+    - Add const before buffer pointer to cater top-level calls
+    - Add a macro for chip erase when efm protect is enabled
+    - Bug Fixed # judge the EFM_FLAG_OPTEND whether set o not before clear EFM_FLAG_OPTEND
+  - **eth**
+    - Modify ETH_PPS_OUTPUT_FREQ_1HZ as ETH_PPS_OUTPUT_PULSE_1HZ
+    - Modify comment of defgroup ETH_PPS_Output_Frequency
+    - Extract the relevant code of PHY
+    - Modify comment of API ETH_PPS_SetPpsOutputFreq()
+  - **hash**
+    - Fixed HASH_HMAC_Calculate function
+  - **i2c**
+    - Rename related to SMBus Alert Response Address
+    - Modify I2C_CCR_FREQ to I2C_CCR_CKDIV
+  - **i2s**
+    - Removed I2S_RST_TYPE_CODEC
+  - **icg**
+    - Modify comment of ICG_BOR_Voltage_Threshold
+  - **nfc**
+    - Optimize function EXMC_NFC_ReadId
+  - **pwc**
+    - Add assert for PWC_STOP_Enter()
+  - **qspi**
+    - Modify QSPI->SR2 to QSPI->CLR
+    - Fix QSPI_ClearStatus()
+  - **tmr4**
+    - Fix misra warning, MODIFY_REG->MODIFY_RCSR_REG
+  - **usart**
+    - Add assert for pvBuf pointer alignment for data width 9bit
+  - **usb**
+    - Modify API usb_wrpkt & usb_rdpkt for C-STAT
+#### midwares
+- ##### hc32/iap
+  - Modify u8FrameData to 4-byte alignment
+  - Fix cppcheck warning
+- ##### hc32/iec60730_class_b_stl
+  - Add compiler macros pre-processor: GCC and AC6
+  - Assign m_pu32MarchRAM using the variable m_au32MarchRAM
+#### projects
+- ##### sk_hc32f467_lqfp100/applications
+  - **emulate_eeprom/flash_emulate_eeprom**
+    - Add flash_emulate_eeprom application
+  - **functional_safety/iec60730_class_b**
+    - Add BSP clock initialization
+    - Change STL IO test input pin: PB3 -> PC13
+    - De-init FCM after XTAL32 intialized
+    - Replace peripheral WDT with SWDT to avoid dependencies on the system clock
+  - **iap/iap_boot**
+    - Modify XTAL pins definition
+  - **iap/iap_ymodem_boot**
+    - Modify XTAL pins definition
+  - **usb/usb_dev_cdc**
+    - Optimize print information
+  - **usb/usb_dev_cdc_msc**
+    - Add usb_dev_cdc_msc application
+    - Optimize print information
+    - Update for new SDIOC midwares
+  - **usb/usb_dev_hid_cdc**
+    - Optimize print information
+  - **usb/usb_dev_hid_custom**
+    - Optimize print information
+  - **usb/usb_dev_hid_msc**
+    - Add usb_dev_hid_msc application
+    - Optimize print information
+    - Update for new SDIOC midwares
+  - **usb/usb_dev_mouse**
+    - Optimize print information
+  - **usb/usb_dev_msc**
+    - Add usb_dev_msc application
+    - Optimize print information
+    - Update for new SDIOC midwares
+  - **usb/usb_dev_winusb**
+    - Optimize print information
+  - **usb/usb_host_cdc**
+    - Optimize print information
+  - **usb/usb_host_mouse_kb**
+    - Optimize print information
+  - **usb/usb_host_msc**
+    - Optimize print information
+- ##### sk_hc32f467_lqfp100/examples
+  - **adc/adc_hard_trigger**
+    - Modify macro TMR0_CMP_VAL value
+  - **crc/crc_hw_accumulate_check**
+    - Modify code due to CRC interface change
+  - **crc/crc_hw_encode_hw_check**
+    - Modify code due to CRC interface change
+  - **crc/crc_hw_encode_sw_check**
+    - Fix cppcheck warning
+    - Modify code due to CRC interface change
+  - **ctc/ctc_ctcref_trimming**
+    - Optimize process
+  - **dmac/dmac_base**
+    - Add DMA transform tigger by software
+  - **gpio/gpio_input**
+    - Add gpio_input example
+  - **hash/hash_hmac**
+    - Delete interrupt mode
+  - **intc/intc_extint_key**
+    - Integrate global, group, share interrupt in one project
+  - **mpu/mpu_core_write_protect**
+    - Modify protect region from RTC to SRAM
+  - **timer0/timer0_capture**
+    - Change Timer0 interrupt priority to (DDL_IRQ_PRIO_DEFAULT - 1U)
+  - **usart/usart_uart_dma**
+    - Add function: USART_StopTimeoutTimer
+#### utils
+------
+## V1.0.0  Aug 31, 2024
+#### documents
+#### drivers
+- ##### bsp/components
+  - **24cxx**
+    - Add prefix to static global variable
+  - **wm8731**
+    - Add prefix to static global variable
+- ##### hc32_ll_driver
+  - **interrupts_share**
+    - Optimize if expression
+  - **adc**
+    - Optimized access code for some registers to improve readability
+  - **aos**
+    - Optimize assert IS_AOS_TARGET
+  - **can**
+    - Added macro group CAN_ID_Mask
+    - API optimized: CAN_WriteTxBuf()
+  - **clk**
+    - Modify CLK_PLLXM_DIV_MAX as 25U
+    - Modify CLK_PLLXM_DIV_MIN as 1U
+  - **crc**
+    - Optimized APIs CRC_WriteData8/16/32
+  - **dma**
+    - Add assert IS_DMA_DATA_WIDTH_ADDR
+  - **dmc**
+    - API EXMC_DMC_DeInit add return value
+    - Function EXMC_DMC_DeInit add return value
+  - **dvp**
+    - API DVP_DeInit add return value
+    - Function DVP_DeInit add return value
+  - **efm**
+    - Optimize condition judgment
+  - **eth**
+    - Add assert IS_ETH_MAC_SMI_CLK(), IS_ETH_PPS_CH_OUTPUT_FREQ(), IS_ETH_PPS_OUTPUT_MD_FREQ
+    - Optimize the process of ETH_Start() & ETH_Stop()
+    - Optimize ETH_MAC_SetInterface(), ETH_PTP_UpdateBasicAddend(), ETH_PTP_SysTimeInit(), ETH_PPS_Init()
+    - Fixed bug of ETH_PMT_EnterPowerDown() # modify && as || logic
+    - Modify ETH_PPS_SetPps0OutputFreq() as ETH_PPS_SetPpsOutputFreq()
+    - Add API ETH_MAC_SetMdcClock()
+  - **hash**
+    - Modify API about CR register for couping risk
+  - **i2c**
+    - Modify duty cycle for SCL
+  - **i2s**
+    - Optimize I2S_DeInit()
+    - Optimize calculate for I2SDIV and ODD in MCK enabled mode
+    - Delete needless set data in I2S_Init function
+  - **icg**
+    - Add __USED for optimize
+  - **nfc**
+    - API EXMC_NFC_DeInit add return value
+    - Function EXMC_NFC_DeInit add return value
+  - **pwc**
+    - Modify macro name IS_PWC_WKT_COMPARISION_VALUE as IS_PWC_WKT_COMPARISON_VALUE
+    - Accessed CM_PWC->WKTC2 in 8-bit
+  - **rtc**
+    - Optimized access code for some registers to improve readability
+  - **sdioc**
+    - Add parameter for SDMMC_CMD38_Erase
+  - **sram**
+    - Modify assert IS_SRAM_ECC_MD()
+  - **tmr4**
+    - Fix bug that the status flag of CCSR/OCSR for couping risk
+  - **tmr6**
+    - Delete macro definition IS_TMR6_DIR_UPD_MD
+  - **tmra**
+    - Optimized access code for some registers to improve readability
+  - **trng**
+    - Use MODIFY_REG32() to prevent reserved bit from being overwritten
+  - **usart**
+    - Optimize condition judgment
+#### midwares
+- ##### hc32/iec60730_class_b_stl
+  - Use STL_RetargetPrintf() replace printf() of the C lib.
+  - Fix warning: MISRAC2012-Rule-8.4
+- ##### hc32/usb
+  - Optimize the interface init function
+  - Modify for MISRA
+  - Optimize the interface struct
+  - Change the DataLength in the _CDCXfer struct from u16 to u32
+  - Change the length parameter in the usb_host_cdc_senddata() from u16 to u32
+  - Add a CDC Request state
+  - Optimize assignment operation
+  - Clear ACK flag when XFRC in usb_host_chx_in_isr() function
+  - Clear CHH flag when XFRC in usb_host_chx_in_isr() and usb_host_chx_out_isr() function
+#### projects
+- ##### sk_hc32f467_lqfp100/applications
+  - **iap/iap_app**
+    - Modify u8FrameData to 4-byte alignment
+  - **iap/iap_boot**
+    - Modify u8FrameData to 4-byte alignment
+  - **usb/usb_dev_hid_cdc**
+    - Modify timer0 clock division for asynchronous clock
+  - **usb/usb_dev_hid_custom**
+    - Modify timer0 clock division for asynchronous clock
+  - **usb/usb_host_cdc**
+    - Add BSP_KEY_Init() in the usb_bsp_init() function
+    - Redesign the CDC data tx and rx application demo
+    - Modify user state definition
+- ##### sk_hc32f467_lqfp100/examples
+  - **can/can_classical**
+    - Example optimized.
+  - **can/can_loopback**
+    - Example optimized.
+  - **can/can_ttcan**
+    - Example optimized.
+  - **ctc/ctc_ctcref_trimming**
+    - Implement the weak function: CTC_Udf/Ovf_IrqHandler
+  - **ctc/ctc_xtal32_trimming**
+    - Implement the weak function: CTC_Udf/Ovf_IrqHandler
+  - **ctc/ctc_xtal_trimming**
+    - Implement the weak function: CTC_Udf/Ovf_IrqHandler
+  - **dcu/dcu_compare**
+    - Add m_u8DoneFlag to indicate interrupt done
+  - **dcu/dcu_sawtooth_wave_mode**
+    - Add DAC_StructInit() before DAC_Init()
+  - **dcu/dcu_triangle_wave_mode**
+    - Add DAC_StructInit() before DAC_Init()
+    - Fix the enabled interrupt type
+  - **efm/efm_dbus**
+    - Optimaize code process
+  - **emb/emb_cmp_brake_timer4**
+    - Delete redundant code
+  - **emb/emb_cmp_brake_timer6**
+    - Delete redundant code
+  - **mau/mau_base**
+    - Optimize software calculate sqrt formula
+    - Use MRC and set PCLK4 for better random data
+  - **qspi/qspi_custom_mode**
+    - Add qspi_custom_mode example
+  - **timer0/timer0_basetimer**
+    - Modify timer0 clock division for asynchronous clock
+  - **timer6/timer6_cmp_deadtime**
+    - Modify transfer condition of general buffer
+  - **trng/trng_base**
+    - Call TRNG_Cmd after the TRNG_Init()
+    - Set PCLK4 for better random data.
+#### utils
+------
+## Beta1.0.0  May 31, 2024
+- Initial release.
